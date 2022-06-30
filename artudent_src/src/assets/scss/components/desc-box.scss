@@ -1,0 +1,24 @@
+.desc-box {
+  max-width: 1210px;
+  padding:0 20px;
+  margin:0 auto;
+  text-align: center;
+  p {
+    font-size:10px;
+    line-height:18px;
+    letter-spacing: 0.12em;
+    padding-left: 0.12em;
+    font-weight: $FONT_BLACK;
+    word-break:keep-all;
+  }
+
+  @include mq('L') {
+    p {
+      font-size: 18px;
+      line-height: 33px;
+      br.mo {
+        display: none;
+      }
+    }
+  }
+}

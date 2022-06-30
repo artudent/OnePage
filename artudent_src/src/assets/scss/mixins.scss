@@ -1,0 +1,164 @@
+// 처음과 마지막 요소 여백 초기화
+@mixin reSpacingGroup($type:'margin') {
+    &:first-of-type {
+        #{$type}-top: 0;
+    }
+    &:last-of-type {
+        #{$type}-bottom: 0;
+    }
+}
+
+// font-family 세팅
+@mixin fontSet($name, $file, $weight, $format) {
+    @font-face {
+        font-family: $name;
+        font-style: normal;
+        font-weight: $weight;
+        @if $format == 'ttf' {
+            src: url('~@/assets/fonts/#{$file}.woff2') format("woff2"), 
+                url('~@/assets/fonts/#{$file}.woff') format("woff"),
+                url('~@/assets/fonts/#{$file}.ttf') format("truetype");
+        } @else if $format == 'otf' {
+            src: url('~@/assets/fonts/#{$file}.woff2') format("woff2"), 
+                url('~@/assets/fonts/#{$file}.woff') format("woff"),
+                url('~@/assets/fonts/#{$file}.otf') format("opentype");
+        }
+    }
+}
+
+// 미디어 쿼리 생성
+@mixin mq($type, $width:$L_SCREEN) {
+    @if $type == 'L' {
+        @media (min-width: $width) {
+            @content;
+        }
+    } @else if $type == 's' {
+        @media (max-width: $width - 1) {
+            @content;
+        }
+    } @else if $type == 'min' {
+        @media (min-width: $width) {
+            @content;
+        }
+    } @else if $type == 'max' {
+        @media (max-width: $width) {
+            @content;
+        }
+    }
+}
+
+// 폰트관련 서식
+@mixin fontStyle($font-size:inherit, $line-height:inherit, $color:inherit, $letter-spacing:inherit, $font-weight:inherit) {
+    font-size: $font-size;line-height:$line-height;color:$color;letter-spacing:$letter-spacing;font-weight:$font-weight;
+}
+
+// 폰트패밀리 지정
+@mixin fontFamily($font-family) {
+    font-family:$font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+// 각 분기마다 max-width를 정해주는 mixin
+@mixin innerWidth($mobile-padding) {
+    width:100%;max-width:$s-max-width;padding:0 $mobile-padding;margin:0 auto;box-sizing:border-box;
+    @include mq('m') {max-width:$M_MAX_WIDTH;padding:0;}
+    @include mq('L') {max-width:$L_MAX_WIDTH;}
+}
+
+// 배경이미지가 해상도에 적절한 이미지로 적용하는 mixin
+@mixin bgImage($url, $url-2x:'', $size:cover, $position:center, $repeat:no-repeat) {
+    background:url($url) $repeat $position;background-size:$size;
+    @if($url-2x != '') {
+        background-image: -webkit-image-set(url($url) 1x, url($url-2x) 2x);
+        background-image: image-set(url($url) 1x, url($url-2x) 2x);
+    }
+}
+
+// 라인 수를 받아와서 라인 수가 넘어가면 text-ellips 적용되는 mixin
+@mixin txtEllip($lines) {
+    overflow:hidden;text-overflow:ellipsis;
+    @if($lines == 1) {
+        white-space: nowrap;
+    }
+    @else {
+        display:-webkit-inline-box;-webkit-line-clamp: $lines;-webkit-box-orient: vertical;
+    }
+}
+
+// IE대응하는 그리드 레이아웃
+@mixin gridLayout($ms-row, $row-start, $ms-row-span, $row-end, $ms-column, $column-start, $ms-column-span, $column-end) {
+    -ms-grid-row:$ms-row;grid-row-start:$row-start;-ms-grid-row-span:$ms-row-span;grid-row-end:$row-end;
+    -ms-grid-column:$ms-column;grid-column-start:$column-start;-ms-grid-column-span:$ms-column-span;grid-column-end:$column-end;
+}
+
+// position값과 width, height값을 설정하는 mixin
+@mixin pos($pos, $w:unset, $h:unset, $top:unset, $left:unset, $bottom:unset, $right:unset) {
+    position:$pos;
+    @if $w != unset {width:$w;}
+    @if $h != unset {height:$h;}
+    @if $top != unset {top:$top;}
+    @if $left != unset {left:$left;}
+    @if $bottom != unset {bottom:$bottom;}
+    @if $right != unset {right:$right;}
+}
+
+// position속성을 이용해 수직, 수평 중앙 정렬하는 mixin
+@mixin posCenter($pos:absolute) {
+    position:$pos;top:50%;left:50%;transform:translate(-50%,-50%);
+}
+
+// border 스타일을 지정하는 mixin
+@mixin border($color, $radius:none, $px:1px, $type:solid) {
+    box-sizing:border-box;border:$px $type $color;
+    @if $radius != none {border-radius:$radius;}
+}
+
+// flex 속성을 지정하는 mixin
+@mixin flex($jus:unset, $align:center, $wrap:unset, $dir:unset) {
+    display:flex;flex-wrap:$wrap;flex-direction:$dir;justify-content:$jus;align-items:$align;
+}
+
+// inline-block 속성을 사용할 때 align, box-sizing을 자동으로 설정하는 mixin
+@mixin inBlock($align:middle, $box:border-box) {
+    display:inline-block;vertical-align:$align;box-sizing:$box;
+}
+
+// absolute 속성으로 background image cover 속성과 유사하게 설정하는 mixin
+@mixin abCover() {
+    position:absolute;min-width:100%;min-height:100%;left:50%;top:50%;transform:translate(-50%,-50%);
+}
+
+// ::before, ::after 와 같은 sudo 속성에서 기본적으로 사용하는 mixin
+@mixin sudoDefault($dis:block) {
+    content:'';display:$dis;
+}
+
+// ::before, ::after 와 같은 sudo 속성에서 inline-block 을 지정하는 mixin
+@mixin sudoInblock($w, $h, $align:middle, $marginL:unset, $marginR:unset) {
+    content:'';display:inline-block;width:$w;height:$h;vertical-align:$align;
+    @if $marginL != unset {margin-left:$marginL}
+    @if $marginR != unset {margin-right:$marginR}
+}
+
+// ::before, ::after 와 같은 sudo 속성에서 absolute 를 지정하는 mixin
+@mixin sudoAbsolute($w, $h, $top:auto, $bottom:auto, $left:auto, $right:auto) {
+    content:'';position:absolute;width:$w;height:$h;top:$top;bottom:$bottom;left:$left;right:$right;
+}
+
+// ::before, ::after 와 같은 sudo 속성에서 counter 속성을 지정하는 mixin
+@mixin sudoCount($name, $dis:block){
+    display:$dis;content:counter($name);counter-increment:$name;
+}
+
+// overflow hidden을 지정하는 mixin
+@mixin overHide($w:unset, $h:unset) {
+    overflow:hidden;
+    @if $w != unset {width:$w;}
+    @if $h != unset {height:$h;}
+}
+
+// 함수 => 사용할 속성 ':'뒤에 함수 선언. ex) width: per(265,300,vw);
+// px -> vh/vw/percent 단위로 변경할 때 자동으로 계산하는 함수 - 소수점 둘째자리까지 나타냄
+@function per($target, $base, $unit) {
+    $result: round(($target / $base * 100)*100)/100 + $unit;
+    @return $result;
+}

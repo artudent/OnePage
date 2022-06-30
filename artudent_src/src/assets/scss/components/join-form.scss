@@ -1,0 +1,143 @@
+.join-form {
+  padding:0 50px;
+  text-align: right;
+  &__wrap {
+    text-align: left;
+  }
+  &__terms {
+    text-align: right;
+    margin:47px 0;
+    &:nth-of-type(1) {
+      margin-top: 0;
+    }
+    &:nth-of-type(2) {
+      margin-bottom: 0;
+    }
+    textarea {
+      margin-bottom: 3px;
+    }
+    @include mq('s') {
+      label {
+        font-size: 11px;
+      }
+    }
+  }
+  &__input {
+    margin-top:46px;
+  }
+  &__artist {
+    --label-size: 120px!important;
+    select {
+      margin:7px 0;
+      @include reSpacingGroup('margin');
+    }
+  }
+  &__email {
+    input[type="text"], select {
+      width: calc(calc(calc(100% - var(--label-size))/2) - 15px)!important;
+    }
+    input + span {
+      width:30px;
+      display: block;
+      text-align: center;
+      margin-top: 7px;
+      @include fontStyle($font-weight:$FONT_BLACK);
+    }
+  }
+  &__attach {
+    flex-wrap: wrap!important;
+    &__subtxt {
+      @include fontStyle(7px, null, #959595, 0.185em, $FONT_NORMAL);
+      margin-top:6px;
+    }
+  }
+  button {
+    margin-top:20px;
+  }
+
+  @include mq('L') {
+    padding: 0 20px;
+    max-width:1600px;
+    margin: 0 auto;
+    &__wrap {
+      border:1px solid #000;
+      padding:45px 100px 62px;
+    }
+    &__terms {
+      margin:149px 0;
+      textarea {
+        margin-bottom: 23px;
+      }
+    }
+    &__input {
+      @include flex(space-between, center, wrap);
+      gap: 55px;
+      width:100%;
+      margin:0 auto;
+      margin-top:78px;
+    }
+    &__school {
+      .form__field__wrap-input {
+        position: relative;
+        &__subtxt {
+          position: absolute;
+          top:100%;
+        }
+      }
+    }
+    &__artist {
+      width:100%;
+      .form__field__wrap-input {
+        width: calc(100% - 233px)!important;
+        text-align: right;
+        select {
+          margin: 0 calc(66px/2);
+          &:first-of-type {
+            margin-left:0;
+            width:calc(33% - 33px);
+          }
+          &:last-of-type {
+            margin-right:0;
+            width:calc(33% - 33px);
+          }
+          vertical-align: middle!important;
+        }
+      }
+    }
+    &__email {
+      input[type="text"]{
+        width:calc(100% - 86px - 130px - 300px)!important;
+        max-width: 300px;
+        &:first-of-type {
+          max-width: 330px;
+        }
+      }
+      select {
+        width: 300px!important;
+      }
+      input + span {
+        display: inline-block;
+        width:86px;
+        font-size: 36px;
+        margin:0;
+      }
+    }
+    &__tel {
+      input {
+        width: 310px!important;
+      }
+    }
+    &__attach { 
+      .form__label {
+        margin-top:0!important;
+      }
+      flex-wrap: nowrap!important;
+      &__subtxt {
+        margin-top:0;
+        font-size: 12px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+  }
+}

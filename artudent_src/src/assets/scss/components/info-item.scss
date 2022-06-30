@@ -1,0 +1,84 @@
+.info-item {
+  --margin: calc(27px/2);
+  @include flex(center, center, wrap);
+  padding:0 30px;
+  margin:calc(var(--margin)*-1) auto;
+  max-width: 500px;
+  &__box {
+    width: 100%;
+    margin: var(--margin) 0;
+    border:1px solid #000;
+    box-sizing: border-box;
+    padding: 14px 60px 16px;
+    position: relative;
+    &--full {
+      margin: 29px 0;
+      padding: 18px 20px;
+    }
+  }
+  &__title {
+    @include fontStyle(14px, null, null, 0.095em, $FONT_BLACK);
+    position: absolute;
+    background-color: #fff;
+    padding: 5px;
+    left:-8px;
+    top:0;
+    transform: translateY(-50%)
+  }
+  &__data {
+    margin: 8px 0;
+    @include reSpacingGroup('margin');
+    > p {
+      @include fontStyle(11px, null, null, 0.095em, $FONT_BLACK);
+      display: inline-block;
+      vertical-align: middle;
+    }
+    &__label {
+      margin-right:10px;
+      min-width:56px;
+    }
+  }
+
+  @include mq('L') {
+    --margin: calc(59px/2);
+    margin-left:0;
+    margin-right:0;
+    justify-content: space-between;
+    align-items: baseline;
+    max-width: 950px;
+    padding:0;
+    &__box {
+      max-width: calc(50% - 21px);
+      padding: 37px 47px 32px;
+      &--full {
+        max-width: unset;
+        margin: var(--margin) 0;
+        padding: 33px 31px 21px;
+      }
+    }
+    &__title {
+      font-size: 24px;
+      letter-spacing: 0.12em;
+      left: -14px;
+      padding: 8px;
+    }
+    &__data {
+      margin: 22px 0;
+      > p {
+        font-size: 18px;
+        line-height: 33px;
+      }
+      &__label {
+        min-width: 108px;
+      }
+    }
+    &__box--full &__data {
+      > p {
+        font-size: 24px;
+      }
+      &__label {
+        min-width: 179px;
+      }
+    }
+  }
+}

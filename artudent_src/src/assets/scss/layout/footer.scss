@@ -1,0 +1,54 @@
+.footer {
+  text-align: center;
+  padding: 38px 20px 44px;
+  background: $COLOR_PRIMARY;
+  > p {
+    font-family: 'NotoSansKR';
+    @include fontStyle(10px, null, #fff, 0.22em, $FONT_BOLD);
+    text-indent: 0.22em;
+  }
+  &__link {
+    margin-bottom: 20px;
+    a {
+      display: inline-block;
+      text-decoration: underline;
+      font-family: inherit;
+      @include fontStyle();
+    }
+  }
+  &__box-img {
+    margin: 0 auto;
+    margin-bottom: 16px;
+    width: 127px;
+    img {
+      width: 100%;
+      display: none;
+      &:first-child {
+        display: block;
+      }
+    }
+  }
+
+  @include mq('L') {
+    padding-top: 58px;
+    padding-bottom: 65px;
+    > p {
+      font-size: 12px;
+    }
+    &__link {
+      margin-bottom: 5px;
+    }
+    &__box-img {
+      width: 220px;
+      margin-bottom:21px;
+      img {
+        &:first-child {
+          display: none;
+        }
+        &:last-child {
+          display: block;
+        }
+      }
+    }
+  }
+}

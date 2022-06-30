@@ -1,0 +1,35 @@
+@include fontSet('Roboto', 'Roboto-Black', $FONT_BLACK, 'ttf');
+@include fontSet('Roboto', 'Roboto-Bold', $FONT_BOLD, 'ttf');
+@include fontSet('Roboto', 'Roboto-Medium', $FONT_MEDIUM, 'ttf');
+@include fontSet('Roboto', 'Roboto-Regular', $FONT_NORMAL, 'ttf');
+@include fontSet('NotoSansKR', 'NotoSansKR-Black', $FONT_BLACK, 'otf');
+@include fontSet('NotoSansKR', 'NotoSansKR-Bold', $FONT_BOLD, 'otf');
+@include fontSet('NotoSansKR', 'NotoSansKR-Regular', $FONT_NORMAL, 'otf');
+
+* {font-family:'Roboto', 'NotoSansKR';letter-spacing:0;outline:none;color:$COLOR_DEFAULT}
+html,body {width:100%;height:100%;}
+html {scroll-behavior:smooth;}
+body {-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;min-width:300px;}
+img {border:none;}
+html,body,ul,ol,p,h1,h2,h3,h4,h5 {margin:0;padding:0;}
+a {text-decoration: none;outline:none;color:inherit;}
+ul li, ol li {list-style: none;vertical-align: middle}
+li > a {display:block;}
+textarea {resize:none;}
+select {appearance: none;}
+select::-ms-expand { display: none; }
+form * {border:0;outline:0;margin:0;padding:0;}
+input,button,textarea {border-radius:0;appearance: none;box-shadow: none;}
+svg {overflow:hidden;width:100%;height:100%;}
+table {border-collapse: collapse;}
+button {border:none;}
+
+// 전역 변수
+:root {
+    --HEADER-H: 70px;
+}
+@include mq('L') {
+    :root {
+        --HEADER-H: 150px;
+    }
+}

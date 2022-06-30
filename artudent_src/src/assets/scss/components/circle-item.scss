@@ -1,0 +1,85 @@
+.circle-item {
+  --size: 200px;
+  --txt-color: $COLOR_DEFAULT;
+  max-width:1568px;
+  margin-left:auto;
+  margin-right:auto;
+  &__txt {
+    @include fontStyle(11px, null, var(--txt-color), 0.12em, $FONT_BOLD);
+    text-indent: 0.12em;
+  }
+  &__item {
+    width:var(--size);
+    height:var(--size);
+    overflow: hidden;
+    background: #fff;
+    border-radius: 100%;
+    text-align: center;
+    margin:33px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 84px;
+      margin-bottom:16px;
+    }
+    &:nth-child(even) {
+      --txt-color: #fff;
+      background-color: $COLOR_PRIMARY;
+    }
+    @include mq('s') {
+      &:first-child {
+        margin-top:0;
+      }
+      &:last-child {
+        margin-bottom:0;
+      }
+    }
+    
+    &--hover {
+      position: relative;
+      cursor: pointer;
+      &:hover::after {
+        content:"preparing the service";
+        text-transform: uppercase;
+        position: absolute;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        background:rgba(255,255,255, 0.95);
+        font-size:14px;
+        font-weight: $FONT_BLACK;
+        line-height:28.1px;
+        letter-spacing: 0.12em;
+        padding: 58px 55px;
+        box-sizing: border-box;
+      }
+      &:nth-child(even):hover::after {
+        background:rgba(255,255,255, 0.86);
+      }
+    }
+  }
+
+  @include mq('L') {
+    --size: 300px;
+    @include flex(space-between, center, wrap);
+    padding:0 30px;
+    &__txt {
+      font-size:14px;
+    }
+    &__item {
+      margin:20px 10px;
+      img {
+        width:106px;
+        margin-bottom:42px;
+      }
+      &--hover {
+        &:hover::after {
+          padding:108px 105px;
+        }
+      }
+    }
+  }
+
+}

@@ -1,0 +1,29 @@
+.title-box {
+  h2 {
+    font-size: 18px;
+    font-weight: $FONT_BLACK;
+    letter-spacing: 0.41em;
+    text-indent: 0.41em;
+    text-align: center;
+    text-transform: uppercase;
+    &::after {
+      content:"";
+      display: block;
+      margin: 0 auto;
+      margin-top:25px;
+      width:100px;
+      height:9px;
+      background:#fff48f;
+    }
+  }
+
+  @include mq('L') {
+    h2 {
+      font-size:36px;
+      &::after {
+        width:200px;
+        margin-top:50px;
+      }
+    }
+  }
+}
